@@ -4,7 +4,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 RUN apt-get update \
     && apt-get install -y python-pip python-dev
-RUN apt-get install -y wget ipython build-essential python-dev python-pip openjdk-7-jdk \
+RUN apt-get install -y wget ipython build-essential git maven openjdk-7-jdk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* 
 
@@ -26,8 +26,6 @@ ENV PATH $PATH:$SPARK_HOME/bin
 RUN wget -qO - ${SPARK_URL} | tar -xz -C /usr/local/ \
     && cd /usr/local && ln -s ${SPARK_DIR} spark
 
-RUN apt-get update \
-    && apt-get install -y git maven ssh
 COPY pom.xml pom.xml
 RUN mvn dependency:go-offline
 COPY startup.sh /etc/startup.sh
