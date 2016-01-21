@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from bson.json_util import dumps
 
-mongodbClient = MongoClient()
+mongodbClient = MongoClient(host="172.17.0.2",port=27017)
 mongodbTweets = mongodbClient.tweets
 
 cursor = mongodbClient.tweets.tweets.find()

@@ -1,0 +1,31 @@
+master:
+    build: ist_spark/
+    container_name: master
+    hostname: master
+    net: ist
+    command: -dm
+slave1:
+    build: ist_spark/
+    container_name: slave1
+    hostname: slave1
+    net: ist
+    command: -ds
+slave2:
+    build: ist_spark/
+    container_name: slave2
+    hostname: slave2
+    net: ist
+    command: -ds
+code:
+    build: ist_twitter/
+    container_name: code
+    working_dir: /code
+    volumes:
+        - /Users/andrzej.nowicki/zed/MongodbSparkIntegration/:/code
+    hostname: code
+    net: ist
+mongo:
+    image: mongo
+    net: ist
+    container_name: mongo
+    hostname: mongo
