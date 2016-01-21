@@ -1,3 +1,4 @@
 MongodbSparkIntegration/.idea
+MongodbSparkIntegration/build
 MongodbSparkIntegration/config.yaml
 **/*.pyc
