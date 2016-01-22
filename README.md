@@ -4,7 +4,9 @@ This is a project that enables you to perform SQL queries on MongoDB databases u
 
 Also included is a sample application that uses twitter API to collect tweets and use them as sample data.
 
-There are two ways of running the application: using docker-compose or by manually running needed docker containers.
+There are two ways of running the application: 
+- using docker-compose or
+- by manually running needed docker containers.
 
 ## Docker containers
 * mongo - this is a standard out-of-the box container that is running mongodb database
@@ -18,7 +20,7 @@ You can run the sample application by simply running:
 docker network create ist
 docker-compose up -d
 ```
-This will automatically run mongo container, the tweeter collector as well as 3 spark containers - one master and two slaves.
+This will automatically run mongo container, the twitter collector as well as 3 spark containers - one master and two slaves.
 
 ### Manual setup
 
@@ -42,7 +44,9 @@ If you want to connect to the mongo database directly, you can use the following
 docker run -it --net ist --rm mongo sh -c 'exec mongo mongo:27017/tweets"'
 ```
 #### Setting up the twitter collector
-In order to run the twitter collector sample you need to setup the `MongodbSparkIntegration/config.yml` file with your twitter API keys. Then simply run the following command to start collecting the data:
+In order to run the twitter collector sample you need to setup the `MongodbSparkIntegration/config.yaml` file with your twitter API keys.
+
+When configured, simply run the following command to start collecting the data:
 ```
 # let's build the image for ist_twitter
 docker build -t ist_twitter ist_twitter/
@@ -97,7 +101,7 @@ Let's look into the parameters for this commands:
 
 Let's assume that we have a running application and have already collected some tweets for analysis.
 
-We'll use `pyspark` command to run a interactive python shell that will allow us to use Spark, Spark SQL and connect to mongodb.
+We'll use `pyspark` command to run a interactive python shell that will allow us to use Spark SQL and connect to mongodb.
 
 In order to run `pyspark` you can issue the following command:
 
@@ -113,14 +117,14 @@ Before we move on to the rest of the arguments let's have a look at spark archit
 
 In our case, we'll use the spark standalone mode in which spark is also managing the workers. Spark can also use Apache Mesos or YARN.
 
-The driver program in our case is the `pyspark`, the cluster manager is the `master` container, and the worker nodes are the `slave<n>` containers.
+The driver program in our case is the `pyspark`, the cluster manager is the `master` container, and the worker nodes are the `slave` containers.
 
-- `--master spark://master:7077` set the cluster manager
-- `--num-executors 5` set the number of executors
-- `--driver-memory 512m` memory limit for the driver
-- `--executor-memory 512m` memory limit for the workers (in our case 512MB each)
+- `--master spark://master:7077` sets the cluster manager
+- `--num-executors 5` sets the number of executors
+- `--driver-memory 512m` sets the memory limit for the driver
+- `--executor-memory 512m` sets the memory limit for the workers (in our case 512MB each)
 
-If everything went well, we should see some messages and finally an ipython prompt like that:
+If everything went well, we should see some messages and finally an ipython prompt welcoming us like that:
 ```
 Welcome to
       ____              __
