@@ -8,7 +8,7 @@ from bson.json_util import loads
 configurationReader = Reader()
 apiConf = configurationReader.read_from_yaml_file('config.yaml')
 
-mongodbClient = MongoClient()
+mongodbClient = MongoClient("mongodb://mongo:27017/tweets")
 mongodbTweets = mongodbClient.tweets
 
 
@@ -25,6 +25,7 @@ class MongoDBListener(StreamListener):
 
     def on_error(self, status):
         print status
+        print self
 
 if __name__ == '__main__':
         # This handles Twitter authetification and the connection to Twitter Streaming API
