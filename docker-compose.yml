@@ -21,7 +21,7 @@ code:
     container_name: code
     working_dir: /code
     volumes:
-        - /Users/andrzej.nowicki/zed/MongodbSparkIntegration/:/code
+        - MongodbSparkIntegration/:/code
     hostname: code
     net: ist
 mongo:
